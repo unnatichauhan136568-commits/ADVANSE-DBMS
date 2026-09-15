@@ -1,24 +1,7 @@
-set serveroutput on
-declare
-
-cursor c1 is select id,name,city from customer  where name like'r%';
-
-i customer.id%type;
-n customer.name%type;
-c customer.city%type;
-
-begin
-open c1;
-loop
-fetch c1 into i,n,c;
-
-exit when c1%notfound;
-
-dbms_output.put_line('id:'||i);
-dbms_output.put_line('name:'||n);
-dbms_output.put_line('city:'||c);
-dbms_output.put_line('------------------------------');
-end loop;
-close c1;
-end;
+CREATE OR REPLACE PROCEDURE multiply_three_numbers (p_num1 IN NUMBER,p_num2 IN NUMBER,p_num3 IN NUMBER) Is
+    v_result NUMBER;
+BEGIN
+    v_result := p_num1 * p_num2 * p_num3;
+    DBMS_OUTPUT.PUT_LINE('Product: ' || v_result);
+END multiply_three_numbers;
 /

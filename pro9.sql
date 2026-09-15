@@ -1,25 +1,18 @@
-set serveroutput on;
-
-declare
-    cursor c1 is
-        select id, name, city
-        from customer
-        order by name;
-
-    xid customer.id%type;
-    xname customer.name%type;
-    xcity customer.city%type;
-
+--proceduce creation use in
+create or replace procedure promax(x IN number,y
+in number)
+IS
+m number;
 begin
-    open c1;
-
-    loop
-        fetch c1 into xid, xname, xcity;
-        exit when c1%notfound;
-
-        dbms_output.put_line(xid || ' ' || xname || ' ' || xcity);
-    end loop;
-
-    close c1;
-end;
+If x > y then
+m:=x;
+dbms_output.put_line(m||'X is max');
+else
+m:=y;
+dbms_output.put_line(m||'Y is max');
+end if;
+end promax;
 /
+To execute this procedure:
+Set serveroutput on
+Exec promax(100,200)
