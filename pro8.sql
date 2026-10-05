@@ -1,7 +1,14 @@
-CREATE OR REPLACE PROCEDURE multiply_three_numbers (p_num1 IN NUMBER,p_num2 IN NUMBER,p_num3 IN NUMBER) Is
-    v_result NUMBER;
+CREATE OR REPLACE FUNCTION FUN_BALANCE ( p_account_id IN NUMBER) RETURN NUMBER IS
+    v_balance NUMBER(15, 2);
 BEGIN
-    v_result := p_num1 * p_num2 * p_num3;
-    DBMS_OUTPUT.PUT_LINE('Product: ' || v_result);
-END multiply_three_numbers;
+    SELECT balance 
+    INTO v_balance 
+    FROM account 
+    WHERE account_id = p_account_id;
+
+    RETURN v_balance;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RETURN 0;
+END;
 /
