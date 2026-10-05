@@ -1,12 +1,8 @@
-create or replace function fun_cube(x in number)
-RETURN number
-IS
-
-c number;
-
+create or replace procedure proins(sid in
+number,sname in char,subtype in char)
+Is
 begin
-
-c:=x * x * x;
-return c;
-end fun_cube;
+insert into subject values(sid,sname,subtype);
+commit;
+end proins;
 /

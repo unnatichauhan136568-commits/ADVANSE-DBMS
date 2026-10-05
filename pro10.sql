@@ -1,11 +1,28 @@
-CREATE OR REPLACE FUNCTION fin_s (
-    p_principal IN NUMBER,
-    p_rate      IN NUMBER,
-    p_time      IN NUMBER
-) RETURN NUMBER IS
-    v_si NUMBER;
+
+CREATE OR REPLACE PROCEDURE promax1 (
+    x IN NUMBER,
+    y IN NUMBER,
+    m OUT NUMBER
+) IS
 BEGIN
-    v_si := (p_principal * p_rate * p_time) / 100;
-    RETURN v_si;
-END fin_s;
+    IF x > y THEN
+        m := x;
+    ELSE
+        m := y;
+    END IF;
+END promax1;
+/
+
+
+SHOW ERRORS PROCEDURE promax1;
+
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+    v_result NUMBER;
+BEGIN
+    promax1(25, 40, v_result);
+    DBMS_OUTPUT.PUT_LINE('Maximum value is: ' || v_result);
+END;
 /
